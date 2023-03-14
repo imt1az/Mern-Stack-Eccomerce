@@ -10,6 +10,7 @@ import PaginateNav from "utls/PaginateNav";
 import SearchBar from "./SearchBar";
 import { Button } from '@mui/material';
 import CollapseCheckBox from "./CollapseCheckBox";
+import RangeSelect from "./RangeSelect";
 const defaultValues = {
   keywords: "",
   brand: [],
@@ -33,7 +34,7 @@ const Shop = () => {
   const brands = useSelector((state) => state.brands);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   useEffect(() => {
     dispatch(get_all_brands());
@@ -49,17 +50,24 @@ const Shop = () => {
     setSearchValues({ page: page });
   };
   const handleResetSearch = () => {
-    setSearchValues({ keywords: "" });
+    setSearchValues({ keywords: "", page: 1 });
   };
   const handleKeyWords = (values) => {
-    setSearchValues({keywords:values})
+    setSearchValues({ keywords: values, page: 1 })
   };
-  const handleReset =()=>{
+  const handleReset = () => {
     setSearchValues(defaultValues)
   }
   // Filters
-  const handleFilters = (items)=>{
-    // Do Something
+  const handleFilters = (items, categroy) => {
+    if (categroy === 'brands') {
+      setSearchValues({ brand: items, page: 1 })
+    }
+
+  }
+
+  const handleRange = (values)=>{
+    setSearchValues({min:values[0],max:values[1], page: 1 })
   }
 
   return (
@@ -68,21 +76,27 @@ const Shop = () => {
         <div className="page-top ">
           <SearchBar handleKeyWords={(values) => handleKeyWords(values)} />
           <div className="mx-2">
-          <Button onClick={()=>handleReset()} className=""  type='submit'variant="contained">Reset Search</Button>
+            <Button onClick={() => handleReset()} className="" type='submit' variant="contained">Reset Search</Button>
           </div>
 
         </div>
-        <hr className="my-5 divide-x-0 h-2 bg-slate-200"/>
+        <hr className="my-5 divide-x-0 h-2 bg-slate-200" />
         {/* Grid Items */}
         <div className="grid grid-cols-1 md:grid-cols-4    gap-4">
           <div className="col-span-1  p-2">
-            <div className="min-w-full ">
-             <CollapseCheckBox 
-             initState={true}
-             title="Brands"
-             list={brands.all}
-             handleFilters = {(filters)=>handleFilters(filters)}
-             />
+            <div className="">
+              <CollapseCheckBox
+                initState={true}
+                title="Brands"
+                list={brands.all}
+                handleFilters={(filters) => handleFilters(filters, 'brands')}
+              />
+            </div>
+            <div className="col-span-1  p-2">
+              <RangeSelect
+                title="Price Range"
+                handleRange={(values) => handleRange(values)}
+              />
             </div>
           </div>
 

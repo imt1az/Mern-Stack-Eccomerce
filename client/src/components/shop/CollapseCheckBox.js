@@ -18,7 +18,8 @@ const CollapseCheckBox = (props) => {
           {/* <Typography>
           <Box sx={{ fontWeight: 'bold', m: 1 }}>Bold</Box>
           </Typography> */}
-          <ListItemText  primary={value.name} />
+         
+          <ListItemText  primary={value.name} className=""/>
           <ListItemSecondaryAction>
             <Checkbox
               onChange={() => handleToggle(value._id)}
@@ -52,9 +53,11 @@ const CollapseCheckBox = (props) => {
           {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         </ListItem>
 
-        <Collapse in={open} timeout="auto">
+        <Collapse in={open} timeout="auto" >
           <List component="div" disablePadding>
-            {renderList()}
+           
+           {renderList()}
+         
           </List>
         </Collapse>
 

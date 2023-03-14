@@ -41,7 +41,7 @@ const Card = (props) => {
             <WavesButton
               type="default"
               altclassName="px-2 py-2 font-bold transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none"
-              title="Add To Cart"
+              title="View Product"
               linkTo={`/product_detail/${props.item._id}`}
             />
             {/* <button

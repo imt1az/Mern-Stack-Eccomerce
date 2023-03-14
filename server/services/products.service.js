@@ -108,7 +108,7 @@ const paginateProducts = async (req) => {
 
     if (
       (req.body.min && req.body.min > 0) ||
-      (req.body.max && req.body.max < 10000)
+      (req.body.max && req.body.max < 100000)
     ) {
       if (req.body.min) {
         aggQueryArray.push({ $match: { price: { $gt: req.body.min } } });
@@ -135,7 +135,7 @@ const paginateProducts = async (req) => {
     let aggQuery = Product.aggregate(aggQueryArray);
     const options = {
       page: req.body.page,
-      limit: 3,
+      limit: 4,
       sort: { date: "desc" },
     };
     const products = await Product.aggregatePaginate(aggQuery, options);
@@ -145,21 +145,21 @@ const paginateProducts = async (req) => {
   }
 };
 
-const picUpload = async(req)=>{
-  try{
-       const upload = await cloudinary.uploader.upload(req.files.file.path,{
-        public_id:`${Date.now()}`,
-        folder:'Site_upload'
-       })
+const picUpload = async (req) => {
+  try {
+    const upload = await cloudinary.uploader.upload(req.files.file.path, {
+      public_id: `${Date.now()}`,
+      folder: 'Site_upload'
+    })
 
-       console.log('Upload',upload)
+    console.log('Upload', upload)
 
-       return{
-        public_id:upload.public_id,
-        url:upload.url
-       }
+    return {
+      public_id: upload.public_id,
+      url: upload.url
+    }
   }
-  catch(error){
+  catch (error) {
     throw error
   }
 }
