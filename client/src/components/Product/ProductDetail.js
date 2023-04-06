@@ -114,9 +114,9 @@ const ProductDetail = (props) => {
               </div>
               <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6 cursor-pointer">
                 {products && products.byId.images ?
-                  products.byId.images.map((item) => (
+                  products.byId.images.map((item,key) => (
                     <div className="bg-gray-100 flex justify-center items-center py-4 ">
-                      <img onClick={() => handleOpen()} src={item} alt="Wooden chair - preview 1" />
+                      <img id={key} onClick={() => handleOpen()} src={item} alt="Wooden chair - preview 1" />
                     </div>
                   ))
                   : null

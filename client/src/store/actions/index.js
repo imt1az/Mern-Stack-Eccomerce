@@ -13,6 +13,7 @@ import {
   SIGN_OUT,
   SUCCESS_GLOBAL,
   UPDATE_USER_PROFILE,
+  USER_ADD_TO_CART,
   USER_CHANGE_EMAIL,
 } from "../types";
 
@@ -36,6 +37,11 @@ export const userChangeEmail = (data) => ({
 export const userSignOut = () => ({
   type: SIGN_OUT,
 });
+
+export const userAddToCart = (data) => ({
+  type:USER_ADD_TO_CART,
+  payload:data
+})
 
 // Products
 export const productsBySold = (data) => ({

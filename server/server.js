@@ -6,9 +6,9 @@ const mongoSanitize = require('express-mongo-sanitize')
 require('dotenv').config()
 const routes = require('./routes');
 const passport = require('passport')
-const {jwtStrategy} = require('./middleWare/passport')
+const { jwtStrategy } = require('./middleWare/passport')
 
-const {handleError,covertToApiError} = require('./middleWare/apiError')
+const { handleError, covertToApiError } = require('./middleWare/apiError')
 
 
 
@@ -28,15 +28,15 @@ const mongoUri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ac-hcf
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  
-   
-  
 
-    
-    }, err => {
-    if(err) throw err;
+
+
+
+
+}, err => {
+    if (err) throw err;
     console.log('Connected to MongoDB111!!!')
-    });
+});
 
 /// body parse
 app.use(express.json())
@@ -49,22 +49,22 @@ app.use(mongoSanitize());
 
 // Passport
 app.use(passport.initialize());
-passport.use('jwt',jwtStrategy)
+passport.use('jwt', jwtStrategy)
 
 
 /// routes
-app.use('/api',routes)
+app.use('/api', routes)
 
 /// HANDLE ERRORS
 /// if the error not recognized....convert to api error
 app.use(covertToApiError);
-app.use((err,req,res,next)=>{
+app.use((err, req, res, next) => {
     console.log('HandleError Calling')
-   handleError(err,res)
+    handleError(err, res)
 })
 
 
 const port = process.env.PORT || 5000;
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })

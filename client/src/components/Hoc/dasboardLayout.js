@@ -58,73 +58,74 @@ const DashboardLayout = (props) => {
     data.map((item, i) => (
       <div className="" key={`${item.name}${i}`}>
         <Link
-        className="flex items-center transition-all duration-1000  mt-4"
-        to={item.linkTo}
-        key={`${item.name}${i}`}
-      >
-        <div className="text-2xl">{item.icon}</div>
+          className="flex items-center transition-all duration-1000  mt-4"
+          to={item.linkTo}
+          key={`${item.name}${i}`}
+        >
+          <div className="text-2xl">{item.icon}</div>
 
-        <span className=" md:block hidden text-xl px-2 font-medium"> {item.name}</span>
-      </Link>
+          <span className=" md:block hidden text-xl px-2 font-medium"> {item.name}</span>
+        </Link>
       </div>
     ));
 
   return (
     <>
-    <div className="container mx-auto">
-      <div className="grid grid-cols-10 gap-5">
-        <div className="col-span-2 z-10">
-          <div
-            className={`min-h-screen bg-slate-300 transition-all duration-1000  ${
-              toggle ? "md:w-72 w-20" : " w-20"
-            }`}
-          >
-            <nav className=" p-4   ml-4 mr-4 transition-all duration-1000 ">
-              <div
-                className="flex items-center justify-center cursor-pointer"
-                onClick={() => handleToggle()}
-              >
-                <div className="text-2xl mx-2">
-                  <FaHome />
-                </div>
-                {toggle && (
-                  <h1 className=" md:block hidden text-2xl font-medium transition-all duration-1000">
-                    Dashboard
-                  </h1>
-                )}
-              </div>
-              {toggle && generateLinks(links)}
-              <hr className="mt-4" />
-              {/*Admin */}
-
-              {users.data.role === "admin" ? (
-                <div>
+      <div className="">
+        <div className="grid grid-cols-10  ">
+          <div className="col-span-2  mr-2 text-white  ">
+            <div
+              className={`min-h-screen bg-slate-900 transition-all duration-1000  ${toggle ? "md:w-full w-20" : " w-20"
+                }`}
+            >
+              <nav className=" p-4   ml-4 mr-4 transition-all duration-1000 ">
+                <div
+                  className="flex items-center justify-center cursor-pointer"
+                  onClick={() => handleToggle()}
+                >
+                  <div className="text-2xl mx-2">
+                    <FaHome />
+                  </div>
                   {toggle && (
-                    <div className="mt-5 flex items-center justify-center cursor-pointer">
-                      <div className="text-4xl">
-                        <MdAdminPanelSettings />
-                      </div>
-                      <h1 className="md:block md:justify-center hidden text-2xl font-medium">Admin</h1>
-                    </div>
+                    <h1 className=" md:block hidden text-2xl font-medium transition-all duration-1000">
+                      Dashboard
+                    </h1>
                   )}
-
-                  {toggle && generateLinks(admin)}
                 </div>
-              ) : null}
-            </nav>
+                {toggle && generateLinks(links)}
+                <hr className="mt-4" />
+                {/*Admin */}
+
+                {users.data.role && users.data.role === "admin" ? (
+                  <div>
+                    {toggle && (
+                      <div className="mt-5 flex items-center justify-center cursor-pointer">
+                        <div className="text-4xl">
+                          <MdAdminPanelSettings />
+                        </div>
+                        <h1 className="md:block md:justify-center hidden text-2xl font-medium">Admin</h1>
+                      </div>
+                    )}
+
+                    <div>
+                      {toggle && generateLinks(admin)}
+                    </div>
+                  </div>
+                ) : null}
+              </nav>
+            </div>
           </div>
-        </div>
-        <div className="col-span-8 ">
-          <div className="text-3xl font-semibold bg-slate-600 p-2">
-            <h1 className="text-white">{props.title}</h1>
+          <div className="col-span-8 bg-white ">
+            <div className="text-2xl font-semibold bg-indigo-200 p-2 rounded-sm">
+              <h1 className="text-slate-800 font-bold">{props.title}</h1>
+            </div>
+            <div>
+              {props.children}
+              {/* <Outlet></Outlet> */}
+            </div>
           </div>
-         <div>
-        {props.children}
-        {/* <Outlet></Outlet> */}
-         </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

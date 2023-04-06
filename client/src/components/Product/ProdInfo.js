@@ -3,9 +3,29 @@ import { MdLocalShipping } from "react-icons/md";
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
 import { WavesButton } from 'utls/tools';
 import { Modal } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { userAddToCart } from 'store/actions/user.action';
 const ProdInfo = (props) => {
 
     const detail = props.detail;
+    const user = useSelector(state => state.users);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleAddToCart = (item) => {
+        if (!user.auth) {
+         navigate(`/sign_in`);
+         toast.error(
+          `Please Log in`
+        );
+         
+          return false;
+        }
+        dispatch(userAddToCart(item));
+    
+        
+      };
 
     const showProductTags = (detail) => (
         <div className=" flex flex-col justify-between mt-4">
@@ -96,10 +116,10 @@ const ProdInfo = (props) => {
                 <hr className=" bg-gray-200 w-full mt-4" />
             </div>
 
-           <WavesButton
-           type='add_to_cart_link'
-           runAction={()=>alert('Add to cart')}
-           />
+            <WavesButton
+                type='add_to_cart_link'
+                runAction={() => handleAddToCart(detail)}
+            />
         </div>
 
     );

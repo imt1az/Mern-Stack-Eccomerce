@@ -107,3 +107,35 @@ export const updateChangeEmail = (data)=>{
         }
     }
 }
+export const userAddToCart = (item) => {
+    console.log('Item is ',item)
+    return async(dispatch, getState)=>{
+        try{
+            // const cart = getState().users.cart;
+            
+            dispatch(actions.userAddToCart([
+                ...getState().users.cart,
+                item
+            ]))
+            dispatch(actions.successGlobal(`${item.model} added to cart :)`))
+            // console.log('Cart is ',cart)
+        } catch(error){
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}  
+
+export const removeCart = (position) => {
+   
+    return async(dispatch, getState)=>{
+        try{
+            const cart = getState().users.cart;
+            cart.splice(position,1);
+            dispatch(actions.userAddToCart(cart))
+            // dispatch(actions.successGlobal(`${item.model} added to cart :)`))
+            // console.log('Cart is ',cart)
+        } catch(error){
+            dispatch(actions.errorGlobal(error.response.data.message))
+        }
+    }
+}  

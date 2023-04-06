@@ -13,7 +13,7 @@ const authController = {
 
 
       // Send Register Email
-      await emailService.registerEmail(email,user)
+      await emailService.registerEmail(email,user,token)
 
       res.cookie("x-access-token", token).status(httpStatus.CREATED).send({
         user,

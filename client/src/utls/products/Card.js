@@ -1,17 +1,37 @@
 import React, { useState } from "react";
 import { FaCartPlus } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { userAddToCart } from "store/actions/user.action";
 import { renderCardImage, WavesButton } from "utls/tools";
+import AddToCartModal from "./AddToCartModal";
 
 const Card = (props) => {
   const [modal, setModal] = useState(false);
+  const [error, setErrorType] = useState(null);
+  const user = useSelector(state => state.users);
+  const dispatch = useDispatch();
 
-  const handleAddToCart = (item, modals) => {
-    setModal(modals);
+  const navigate = useNavigate();
+
+  const handleAddToCart = (item) => {
+    if (!user.auth) {
+     navigate(`/sign_in`);
+     toast.error(
+      `Please Log in`
+    );
+     
+      return false;
+    }
+    dispatch(userAddToCart(item));
+
+    
   };
   return (
-    
-   
-      <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500 mb-5 p-3">
+
+
+    <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500 mb-5 p-3">
       {/* <div className="md:h-full md:w-full object-cover" style={{background:`url(${renderCardImage(props.item.images)})`}}>
 <h1>hello</h1>
        </div> */}
@@ -50,9 +70,10 @@ const Card = (props) => {
             
             </button> */}
 
+
             <WavesButton
               type="cart_link"
-              runAction={() => handleAddToCart(props.item, !modal)}
+              runAction={() => handleAddToCart(props.item)}
             />
 
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-bag-plus" viewBox="0 0 16 16">
@@ -67,9 +88,11 @@ const Card = (props) => {
               </a> */}
           </div>
         </div>
+        
       </div>
+      <AddToCartModal modal={modal} error={error}/>
     </div>
-   
+
   );
 };
 

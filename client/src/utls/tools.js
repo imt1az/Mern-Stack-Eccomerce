@@ -25,7 +25,7 @@ export const WavesButton = (props) => {
 
             break;
         case "cart_link":
-            template = <button> <FaCartPlus onClick={() => { props.runAction() }} className='w-10 text-2xl' /></button>
+            template = <button className=''> <FaCartPlus onClick={() => { props.runAction() }} className='w-10 text-2xl hover:text-blue-800' /></button>
 
             break;
         case 'add_to_cart_link':

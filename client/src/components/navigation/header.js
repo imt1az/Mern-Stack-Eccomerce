@@ -94,13 +94,14 @@ const Header = ({ users, signOutUser }) => {
             <div className="flex justify-center items-center pr-4 md:pr-0">
               <div className="flex items-center cursor-pointer mr-1">
                 <Link to='/shop'>
-                <p className="font-bold text-white text-sm bg-red-500 py-1.5 p-1 mb-1 rounded-lg">
-                  Shop
-                </p>
+                  <p className="font-bold text-white text-sm bg-red-500 py-1.5 p-1 mb-1 rounded-lg">
+                    Shop
+                  </p>
                 </Link>
-                
+
               </div>
-              {users.auth ? (
+
+              <div>
                 <div className="flex items-center">
                   <ul className="list-none">
                     <li className="inline-block  mx-2 sm:mx-3 md:mx-3 relative group">
@@ -174,31 +175,45 @@ const Header = ({ users, signOutUser }) => {
                       </a>
                     </li>
                   </ul>
+                  <div className="flex items-center">
+                    
+                    {/* For Authentic user */}
+                    {users.auth ? 
+                    <div className="flex items-center">
+                    <div className=" md:block mx-3 group -mt-3">
+                      <Link to="/dashboard">
+                        <FaUser className="text-slate-900 bg-white text-2xl group-hover:opacity-75 rounded-full shadow py-1 px-1" />
+                      </Link>
+                    </div>
+                    <div>
+                      <span
+                        onClick={() => signOutUser()}
+                        className="cursor-pointer hidden md:block mx-3 sm:mx-4 md:mx-0 py-2 px-2 mr-2 mb-2 text-sm font-medium text-white focus:outline-none bg-slate-900 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                      >
+                        Log Out
+                      </span>
+                    </div>
+                  </div>
 
-                  <div className=" md:block mx-3 group -mt-3">
-                    <Link to="/dashboard">
-                      <FaUser className="text-slate-900 bg-white text-2xl group-hover:opacity-75 rounded-full shadow py-1 px-1" />
-                    </Link>
-                  </div>
+                  :  
                   <div>
-                    <span
-                      onClick={() => signOutUser()}
-                      className="cursor-pointer hidden md:block mx-3 sm:mx-4 md:mx-0 py-2 px-2 mr-2 mb-2 text-sm font-medium text-white focus:outline-none bg-slate-900 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    <button
+                      type="button"
+                      className=" md:block mx-3 sm:mx-4 md:mx-0 py-2 px-2 mr-2 mb-2 text-sm font-medium text-white focus:outline-none bg-slate-900 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     >
-                      Log Out
-                    </span>
+                      <Link to="sign_in">Login</Link>
+                    </button>
                   </div>
+                  
+                  }
+                    
+                   
+                  </div>
+
                 </div>
-              ) : (
-                <div>
-                  <button
-                    type="button"
-                    className="hidden md:block mx-3 sm:mx-4 md:mx-0 py-2 px-2 mr-2 mb-2 text-sm font-medium text-white focus:outline-none bg-slate-900 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                  >
-                    <Link to="sign_in">Login</Link>
-                  </button>
-                </div>
-              )}
+              </div>
+
+
             </div>
           </div>
 

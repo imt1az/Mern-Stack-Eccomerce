@@ -17,9 +17,10 @@ const transporter = nodemailer.createTransport({
 //     domain: process.env.MAILGUN_DOMIAN,
 //   });
 
-const registerEmail = async(userEmail,user)=>{
+const registerEmail = async(userEmail,user,token)=>{    
     try{
        const emailToken = user.generateRegisterToken();
+       console.log(emailToken);
        
        let mailGenerator = new Mailgen({
         theme:"default",
@@ -35,12 +36,14 @@ const registerEmail = async(userEmail,user)=>{
             intro:'Welcome to Life Needed',
             action:{
                 instruction:'To get validate your account,please click here',
+               
                 button:{
                     color:'#1a73e8',
                     text: 'Validate your account',
                     link: `${process.env.SITE_DOMAIN}verification?t=${emailToken}`
                 }
             },
+            
             outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
         }
        }

@@ -2,8 +2,10 @@ const httpStatus = require("http-status")
 const { ApiError } = require("../middleWare/apiError")
 const { User } = require("../models/user")
 const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
 const validateToken = async(token)=>{
+    console.log('Validate Token', token)
   return jwt.verify(token,process.env.DB_SECRET)
 } 
 

@@ -13,6 +13,7 @@ import UserDashboard from "components/dashboard";
 import AuthGuard from "components/Hoc/AuthGuard";
 import DashboardLayout from "components/Hoc/dasboardLayout";
 import UserInfo from "components/dashboard/user/UserInfo";
+import Cart from "components/dashboard/user/Cart";
 import AdminProduct from "components/dashboard/admin/Products";
 import AddProduct from "components/dashboard/admin/Products/add_edit_products/AddProduct";
 import EditProduct from "components/dashboard/admin/Products/add_edit_products/EditProduct";
@@ -69,6 +70,7 @@ useEffect(()=>{
 
         <Route path="/dashboard"  element={<AuthGuard><UserDashboard/></AuthGuard>} />
         <Route path="/dashboard/user/user_info"  element={<AuthGuard><UserInfo/></AuthGuard>} />
+        <Route path="/dashboard/user/user_cart"  element={<AuthGuard><Cart></Cart></AuthGuard>} />
         <Route path="/shop" element={<Shop></Shop>}/>
         <Route path="/product_detail/:id" element={<ProductDetail/>}/>
         <Route path="/sign_in" element={<RegisterLogin></RegisterLogin>}/>
