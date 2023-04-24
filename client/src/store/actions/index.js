@@ -9,6 +9,7 @@ import {
   GET_PROD_PAGINATE,
   PRODUCT_ADD,
   PROD_BY_ID,
+  PURCHASE_SUCCESS,
   REMOVE_PRODUCT,
   SIGN_OUT,
   SUCCESS_GLOBAL,
@@ -40,6 +41,10 @@ export const userSignOut = () => ({
 
 export const userAddToCart = (data) => ({
   type:USER_ADD_TO_CART,
+  payload:data
+})
+export const userPurchaseSuccess = (data)=>({
+  type:PURCHASE_SUCCESS,
   payload:data
 })
 

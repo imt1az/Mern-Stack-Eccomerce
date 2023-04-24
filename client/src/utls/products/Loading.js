@@ -6,7 +6,7 @@ const Loading = ({full}) => {
             <div className='container mx-auto'>
                 {
                     full ?
-                    <div className={`min-h-screen flex justify-center items-center`}>
+                    <div className={`min-h-screen flex justify-center`}>
                     <button className="btn btn-square loading"></button>
                     </div>
                     : ''
