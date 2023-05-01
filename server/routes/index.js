@@ -10,34 +10,34 @@ const router = express.Router();
 
 const routesIndex = [
     {
-        path:'/auth',
-        route:authRoute
+        path: '/auth',
+        route: authRoute
     },
     {
-        path:'/users',
-        route:usersRoute
+        path: '/users',
+        route: usersRoute
     },
     {
-        path:'/brands',
-        route:brandsRoute
+        path: '/brands',
+        route: brandsRoute
     },
     {
-        path:'/products',
-        route:productsRoute
+        path: '/products',
+        route: productsRoute
     },
     {
-        path:'/site',
-        route:siteRoute
+        path: '/site',
+        route: siteRoute
     },
     {
-        path:'/transaction',
-        route:transactionRoute
+        path: '/transaction',
+        route: transactionRoute
     }
 ]
 
-routesIndex.forEach((route)=>{
+routesIndex.forEach((route) => {
     router.use(route.path, route.route);
-    console.log("THis is Path",route.path);
+    console.log("THis is Path", route.path);
 });
 
 
