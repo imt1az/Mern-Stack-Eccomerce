@@ -20,6 +20,8 @@ import EditProduct from "components/dashboard/admin/Products/add_edit_products/E
 import Shop from "components/shop/Shop";
 import ProductDetail from "components/Product/ProductDetail";
 
+import SiteMain from "components/dashboard/admin/site/SiteMain";
+
 
 
 
@@ -65,10 +67,11 @@ useEffect(()=>{
         {/* Admin */}
         <Route path="/dashboard/admin/admin_products"  element={<AuthGuard><AdminProduct/></AuthGuard>} />
         <Route path="/dashboard/admin/add_products"  element={<AuthGuard><AddProduct/></AuthGuard>} />
+        <Route path="/dashboard/admin/manage_site"  element={<AuthGuard><SiteMain/></AuthGuard>} />
         <Route path="/dashboard/admin/edit_product/:id"  element={<AuthGuard><EditProduct/></AuthGuard>} />
          
 
-        <Route path="/dashboard"  element={<AuthGuard><UserDashboard/></AuthGuard>} />
+        <Route path="/dashboard"  element={<AuthGuard><UserDashboard /></AuthGuard>} />
         <Route path="/dashboard/user/user_info"  element={<AuthGuard><UserInfo/></AuthGuard>} />
         <Route path="/dashboard/user/user_cart"  element={<AuthGuard><Cart></Cart></AuthGuard>} />
         <Route path="/shop" element={<Shop></Shop>}/>

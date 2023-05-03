@@ -17,21 +17,21 @@ const Card = (props) => {
 
   const handleAddToCart = (item) => {
     if (!user.auth) {
-     navigate(`/sign_in`);
-     toast.error(
-      `Please Log in`
-    );
-     
+      navigate(`/sign_in`);
+      toast.error(
+        `Please Log in`
+      );
+
       return false;
     }
     dispatch(userAddToCart(item));
 
-    
+
   };
   return (
 
 
-    <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500 mb-5 p-3">
+    <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500 mb-5 p-3 object-contain hover:object-scale-down ">
       {/* <div className="md:h-full md:w-full object-cover" style={{background:`url(${renderCardImage(props.item.images)})`}}>
 <h1>hello</h1>
        </div> */}
@@ -39,11 +39,11 @@ const Card = (props) => {
         <img
           src={renderCardImage(props.item.images)}
           alt=""
-          className="md:h-96 md:w-full object-cover"
+          className="md:h-96 md:w-full object-contain hover:object-scale-down"
         />
       </div>
 
-      <div className="px-4 py-3  md:w-full ">
+      <div className="px-4 py-3  md:w-full  ">
         <span className="text-blue-400 mr-3 uppercase text-xs font-bold">
           {props.item.brand.name}
         </span>
@@ -88,9 +88,9 @@ const Card = (props) => {
               </a> */}
           </div>
         </div>
-        
+
       </div>
-      <AddToCartModal modal={modal} error={error}/>
+      <AddToCartModal modal={modal} error={error} />
     </div>
 
   );

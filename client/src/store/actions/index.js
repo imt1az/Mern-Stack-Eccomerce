@@ -7,12 +7,14 @@ import {
   GET_PRODUCT_BY_DATE,
   GET_PRODUCT_BY_SOLD,
   GET_PROD_PAGINATE,
+  GET_SITE_VARS,
   PRODUCT_ADD,
   PROD_BY_ID,
   PURCHASE_SUCCESS,
   REMOVE_PRODUCT,
   SIGN_OUT,
   SUCCESS_GLOBAL,
+  UPDATE_SITE_VARS,
   UPDATE_USER_PROFILE,
   USER_ADD_TO_CART,
   USER_CHANGE_EMAIL,
@@ -106,3 +108,15 @@ export const clearNotifications = () => {
     });
   };
 };
+
+// Site
+
+export const siteGetVars = (vars)=>({
+  type:GET_SITE_VARS,
+  payload:vars
+})
+
+export const updateSiteVars = (vars)=>({
+  type:UPDATE_SITE_VARS,
+  payload:vars
+})

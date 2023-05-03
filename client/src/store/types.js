@@ -29,3 +29,7 @@ export const PURCHASE_SUCCESS = 'purchase_success';
 // Brand
 
 export const GET_ALL_BRANDS = 'get_all_brands'
+
+// SIte
+export const GET_SITE_VARS = 'get_site_vars'
+export const UPDATE_SITE_VARS = 'update_site_vars'

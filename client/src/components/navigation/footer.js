@@ -1,6 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
+  const site = useSelector(state => state.site)
     return (
         <footer className="bg-[#00103F] text-white mt-12">
     <div className="container mx-auto px-4 py-16">
@@ -8,13 +10,19 @@ const Footer = () => {
         <div className="basis-2/6">
           <img src="./images/logo-mini.png" alt="" srcSet="" className="w-10" />
           <h3 className="font-medium mt-4 mb-3">Call Us</h3>
-          <div className="text-sm">
-            <h4 className="mb-3">01684277944</h4>
-            <h4 className="mb-3">imtiazemon625@gmail.com</h4>
-            <h4 className="mb-3">9am-5pm Monday to Wednesday</h4>
-            <h4 className="mb-3">Dhaka Bangladesh</h4>
-            <h4 className="mb-3">Bashundhara Residential Area</h4>
-          </div>
+           {site && site.vars 
+           ?
+           <div className="text-sm">
+           <h4 className="mb-3">Mobile : {site.vars.phone}</h4>
+           <h4 className="mb-3">Email :  {site.vars.email}</h4>
+           <h4 className="mb-3"> Office time {site.vars.hours} Monday to Wednesday</h4>
+           <h4 className="mb-3">{site.vars.address}</h4>
+           <h4 className="mb-3">Bashundhara Residential Area</h4>
+         </div>
+           :
+           ''
+           }
+         
         </div>
 
         <div className="basis-1/6">

@@ -4,6 +4,7 @@ import {
   MdManageAccounts,
   MdAdminPanelSettings,
   MdSettingsInputComposite,
+  MdLogout
 } from "react-icons/md";
 import {
   FaHouseUser,
@@ -11,7 +12,9 @@ import {
   FaHome,
   FaProductHunt,
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userSignOut } from "store/actions";
+
 export const links = [
   {
     name: "My Account",
@@ -28,7 +31,16 @@ export const links = [
     linkTo: "/dashboard/user/user_cart",
     icon: <FaShoppingCart />,
   },
+  {
+
+    LogoutIcon: <MdLogout />,
+    Logout: 'Logout'
+
+  }
 ];
+
+
+
 
 export const admin = [
   {
@@ -44,6 +56,7 @@ export const admin = [
 ];
 
 const DashboardLayout = (props) => {
+  const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
 
   const [toggle, setToggle] = useState(true);
@@ -53,6 +66,9 @@ const DashboardLayout = (props) => {
   };
 
   console.log("Toggle", toggle);
+  const signOutUser = () => {
+    dispatch(userSignOut())
+  }
 
   const generateLinks = (data) =>
     data.map((item, i) => (
@@ -61,7 +77,12 @@ const DashboardLayout = (props) => {
           className="flex items-center transition-all duration-1000  mt-4"
           to={item.linkTo}
           key={`${item.name}${i}`}
+
         >
+          {item && item.LogoutIcon ? <div onClick={() => signOutUser()} className="flex items-center">
+            <div className="text-2xl">{item.LogoutIcon}</div>
+            <span className=" md:block hidden text-xl px-2 font-medium"> {item.Logout}</span>
+          </div> : ''}
           <div className="text-2xl">{item.icon}</div>
 
           <span className=" md:block hidden text-xl px-2 font-medium"> {item.name}</span>
@@ -80,7 +101,7 @@ const DashboardLayout = (props) => {
             >
               <nav className=" p-4   ml-4 mr-4 transition-all duration-1000 ">
                 <div
-                  className="flex items-center justify-center cursor-pointer"
+                  className="flex items-center cursor-pointer"
                   onClick={() => handleToggle()}
                 >
                   <div className="text-2xl mx-2">

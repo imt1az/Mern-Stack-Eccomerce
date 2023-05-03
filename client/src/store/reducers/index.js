@@ -4,8 +4,9 @@ import users from './users.reducer';
 import products from './products.reducer'
 import notifications from './notification.reducer'
 import brands from './brand.reducer'
+import site from './site.reducer'
 const appReducers = combineReducers({
-    users,products,notifications,brands
+    users,products,notifications,brands,site
 })
 
 
