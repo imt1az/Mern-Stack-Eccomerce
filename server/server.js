@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const xss = require('xss-clean');
+const cors = require("cors");
 const mongoSanitize = require('express-mongo-sanitize')
 require('dotenv').config()
 const routes = require('./routes');
@@ -23,6 +24,7 @@ const { handleError, covertToApiError } = require('./middleWare/apiError')
 // });
 
 // const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.lxept3r.mongodb.net/?retryWrites=true&w=majority`;
+app.use(cors());
 
 const mongoUri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ac-hcfysj1-shard-00-00.lxept3r.mongodb.net:27017,ac-hcfysj1-shard-00-01.lxept3r.mongodb.net:27017,ac-hcfysj1-shard-00-02.lxept3r.mongodb.net:27017/?ssl=true&replicaSet=atlas-k39tzu-shard-0&authSource=admin&retryWrites=true&w=majority`;
 mongoose.connect(mongoUri, {
